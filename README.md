@@ -1,0 +1,1 @@
+# qterminal-snap-packaging
