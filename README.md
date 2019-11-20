@@ -16,10 +16,16 @@ Build status:
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/qterminal-snap)
 
 Terminal:  
+
     sudo snap install qterminal-snap 
+
+or
+
+    sudo snap install qterminal-snap --edge 
     
 #### Connect the snap to optional security confinement interfaces
 Terminal:  
+
     sudo snap connect qterminal-snap:removable-media
 
 ## Uninstall
