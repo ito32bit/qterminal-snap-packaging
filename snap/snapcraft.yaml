@@ -1,0 +1,113 @@
+name: qterminal-snap
+base: core18
+title: Qterminal-snap (unofficial)
+summary: A lightweight Qt-based terminal emulator 
+description: |
+  QTerminal is a lightweight Qt terminal emulator based on QTermWidget.  
+  This is the unofficial snap packaging.  
+  Upstream: https://github.com/lxqt/qterminal  
+
+grade: stable
+confinement: strict
+
+plugs:
+  qtermwidget-snap:
+    interface: content
+    target: $SNAP/qtermwidget-snap
+    default-provider: qtermwidget-snap
+
+layout:
+  /usr/share:
+    bind: $SNAP/usr/share
+
+adopt-info: qterminal-snap
+apps:
+  qterminal-snap:
+    adapter: full
+    command: usr/bin/qterminal
+    command-chain:
+      - bin/desktop-launch
+    environment:
+      QT_STYLE_OVERRIDE: Fusion
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
+    desktop: usr/share/applications/qterminal.desktop
+    plugs:
+      - unity7
+      - x11
+      - wayland
+      - opengl
+      - desktop
+      - desktop-legacy
+      - home
+      - network
+      - network-bind
+      - removable-media
+      - raw-usb
+      - mount-observe
+
+parts:
+  qterminal-snap:
+    source: https://github.com/lxqt/qterminal.git
+    source-type: git
+    source-branch: master
+    plugin: cmake
+    configflags:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+    override-pull: |
+      snapcraftctl pull
+      ver=`git describe --tags --always`
+      cd $SNAPCRAFT_PROJECT_DIR
+      ver=$ver-`git log --oneline -n 1|awk '{print $1}'` || ver=$ver`date +%y%m%d`
+      echo "Set version: $ver"
+      snapcraftctl set-version $ver
+#
+    after:
+      - desktop-qt5
+    build-snaps:
+      - lxqt-build-tools-snap
+      - qtermwidget-snap
+    build-packages:
+      - g++
+      - qttools5-dev
+      - libkf5windowsystem-dev
+      - libqt5svg5-dev
+      - libqt5x11extras5-dev
+      - libutf8proc-dev
+      - libx11-dev
+
+    override-stage: |
+      snapcraftctl stage
+      sed -e '/^Name/s/$/ - snap/' -i usr/share/applications/qterminal.desktop
+#
+    stage-packages:
+      - qttranslations5-l10n
+      - libqt5core5a
+      - libqt5dbus5
+      - libqt5gui5
+      - libqt5widgets5
+      - libqt5x11extras5
+      - libstdc++6
+      - libx11-6
+
+  desktop-qt5:
+      source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+      source-subdir: qt
+      plugin: make
+      make-parameters: ["FLAVOR=qt5"]
+      build-packages:
+        - qtbase5-dev
+        - dpkg-dev
+      stage-packages:
+        - libxkbcommon0
+        - ttf-ubuntu-font-family
+        - dmz-cursor-theme
+        - light-themes
+        - adwaita-icon-theme
+        - gnome-themes-standard
+        - shared-mime-info
+        - libqt5gui5
+        - libgdk-pixbuf2.0-0
+        - libgtk2.0-0
+        - libqt5svg5 # for loading icon themes which are svg
+        - try: [appmenu-qt5] # not available on core18
+        - locales-all
