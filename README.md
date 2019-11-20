@@ -28,6 +28,12 @@ Terminal:
 
     sudo snap connect qterminal-snap:removable-media
 
+## Launch
+
+Main menu: `Qterminal - snap`  
+or  
+Terminal: `qterminal-snap`  
+
 ## Uninstall
 
 Terminal:  
