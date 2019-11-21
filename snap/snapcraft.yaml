@@ -19,6 +19,8 @@ plugs:
 layout:
   /usr/share:
     bind: $SNAP/usr/share
+  $SNAP/usr/share/qtermwidget5:
+    bind: $SNAP/qtermwidget-snap/usr/share/qtermwidget5
 
 adopt-info: qterminal-snap
 apps:
