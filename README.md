@@ -43,7 +43,6 @@ Terminal:
 ```
     sudo snap remove --purge qterminal-snap
     rm -R ~/snap/qterminal-snap
-    sudo snap remove --purge qtermwidget-snap
 ```
 
 ## Upstream
