@@ -30,7 +30,7 @@ apps:
     command-chain:
       - bin/desktop-launch
     environment:
-      QT_STYLE_OVERRIDE: Fusion
+      QT_STYLE_OVERRIDE: Cleanlooks
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     desktop: usr/share/applications/qterminal.desktop
     plugs:
@@ -90,6 +90,8 @@ parts:
       - libqt5x11extras5
       - libstdc++6
       - libx11-6
+      - qt5-style-plugins
+      - papirus-icon-theme
 
   desktop-qt5:
       source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
