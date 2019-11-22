@@ -10,17 +10,9 @@ description: |
 grade: stable
 confinement: classic
 
-plugs:
-  qtermwidget-snap:
-    interface: content
-    target: $SNAP/qtermwidget-snap
-    default-provider: qtermwidget-snap
-
 layout:
   /usr/share:
     bind: $SNAP/usr/share
-  $SNAP/usr/share/qtermwidget5:
-    bind: $SNAP/qtermwidget-snap/usr/share/qtermwidget5
 
 adopt-info: qterminal-snap
 apps:
@@ -31,7 +23,6 @@ apps:
       - bin/desktop-launch
     environment:
       QT_STYLE_OVERRIDE: Cleanlooks
-      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     desktop: usr/share/applications/qterminal.desktop
 
   drop:
@@ -41,7 +32,6 @@ apps:
       - bin/desktop-launch
     environment:
       QT_STYLE_OVERRIDE: Cleanlooks
-      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     desktop: usr/share/applications/qterminal_drop.desktop
 
 parts:
@@ -62,9 +52,9 @@ parts:
 #
     after:
       - desktop-qt5
+      - qtermwidget-snap
     build-snaps:
       - lxqt-build-tools-snap
-      - qtermwidget-snap
     build-packages:
       - g++
       - qttools5-dev
@@ -113,3 +103,21 @@ parts:
         - libqt5svg5 # for loading icon themes which are svg
         - try: [appmenu-qt5] # not available on core18
         - locales-all
+
+  qtermwidget-snap:
+    source: https://github.com/lxqt/qtermwidget.git
+    source-type: git
+    plugin: cmake
+    configflags:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+
+    build-snaps:
+      - lxqt-build-tools-snap
+    build-packages:
+      - g++
+      - libutf8proc-dev
+      - qtbase5-dev
+      - qttools5-dev
+
+    stage-packages:
+      - fonts-hack-ttf
