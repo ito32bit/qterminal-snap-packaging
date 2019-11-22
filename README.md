@@ -24,17 +24,18 @@ Terminal:
 or
 
     sudo snap install qterminal-snap --edge 
-    
-#### Connect the snap to optional security confinement interfaces
-Terminal:  
-
-    sudo snap connect qterminal-snap:removable-media
 
 ## Launch
 
 Main menu: `Qterminal - snap`  
 or  
 Terminal: `qterminal-snap`  
+
+#### Launch drop down terminal
+
+Main menu: `QTerminal drop down - snap`  
+ or  
+Terminal: `qterminal-snap.drop`  
 
 ## Uninstall
 
