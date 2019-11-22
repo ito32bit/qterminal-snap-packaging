@@ -8,7 +8,7 @@ description: |
   Upstream: https://github.com/lxqt/qterminal  
 
 grade: stable
-confinement: strict
+confinement: classic
 
 plugs:
   qtermwidget-snap:
@@ -33,19 +33,6 @@ apps:
       QT_STYLE_OVERRIDE: Cleanlooks
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     desktop: usr/share/applications/qterminal.desktop
-    plugs:
-      - unity7
-      - x11
-      - wayland
-      - opengl
-      - desktop
-      - desktop-legacy
-      - home
-      - network
-      - network-bind
-      - removable-media
-      - raw-usb
-      - mount-observe
 
 parts:
   qterminal-snap:
