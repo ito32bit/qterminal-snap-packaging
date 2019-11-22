@@ -55,7 +55,6 @@ parts:
       - qtermwidget-snap
     build-snaps:
       - lxqt-build-tools-snap
-      - qtermwidget-snap
     build-packages:
       - g++
       - qttools5-dev
