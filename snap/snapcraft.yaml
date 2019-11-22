@@ -34,6 +34,16 @@ apps:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     desktop: usr/share/applications/qterminal.desktop
 
+  drop:
+    adapter: full
+    command: usr/bin/qterminal
+    command-chain:
+      - bin/desktop-launch
+    environment:
+      QT_STYLE_OVERRIDE: Cleanlooks
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/qtermwidget-snap/usr/lib/$SNAPCRAFT_ARCH_TRIPLET
+    desktop: usr/share/applications/qterminal_drop.desktop
+
 parts:
   qterminal-snap:
     source: https://github.com/lxqt/qterminal.git
@@ -67,6 +77,7 @@ parts:
     override-stage: |
       snapcraftctl stage
       sed -e '/^Name/s/$/ - snap/' -i usr/share/applications/qterminal.desktop
+      sed -e '/^Name/s/$/ - snap/' -i usr/share/applications/qterminal_drop.desktop
 #
     stage-packages:
       - qttranslations5-l10n
