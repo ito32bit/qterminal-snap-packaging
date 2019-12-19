@@ -14,17 +14,17 @@ adopt-info: qterminal-snap
 apps:
   qterminal-snap:
     adapter: full
-    command: usr/bin/qterminal
+    command: usr/local/bin/qterminal
     command-chain:
       - bin/desktop-launch
-    desktop: usr/share/applications/qterminal.desktop
+    desktop: usr/local/share/applications/qterminal.desktop
 
   drop:
     adapter: full
-    command: usr/bin/qterminal
+    command: usr/local/bin/qterminal
     command-chain:
       - bin/desktop-launch
-    desktop: usr/share/applications/qterminal_drop.desktop
+    desktop: usr/local/share/applications/qterminal_drop.desktop
 
 parts:
   qterminal-snap:
@@ -33,9 +33,10 @@ parts:
     source-branch: master
     plugin: cmake
     configflags:
-      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr
+      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local
+      - -DCMAKE_FIND_ROOT_PATH=$SNAPCRAFT_STAGE
     organize:
-      snap/$SNAPCRAFT_PROJECT_NAME/current/usr: usr
+      snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local: usr/local
 
     override-pull: |
       snapcraftctl pull
@@ -61,8 +62,8 @@ parts:
 
     override-stage: |
       snapcraftctl stage
-      sed -e '/^Name/s/$/ - snap/' -i usr/share/applications/qterminal.desktop
-      sed -e '/^Name/s/$/ - snap/' -i usr/share/applications/qterminal_drop.desktop
+      sed -e '/^Name/s/$/ - snap/' -i usr/local/share/applications/qterminal.desktop
+      sed -e '/^Name/s/$/ - snap/' -i usr/local/share/applications/qterminal_drop.desktop
 #
     stage-packages:
       - qttranslations5-l10n
@@ -102,9 +103,9 @@ parts:
     source-type: git
     plugin: cmake
     configflags:
-      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr
+      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local
     organize:
-      snap/$SNAPCRAFT_PROJECT_NAME/current/usr: usr
+      snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local: usr/local
 
     build-snaps:
       - lxqt-build-tools-snap/latest/edge
