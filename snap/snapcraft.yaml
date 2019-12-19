@@ -10,10 +10,6 @@ description: |
 grade: stable
 confinement: classic
 
-layout:
-  /usr/share:
-    bind: $SNAP/usr/share
-
 adopt-info: qterminal-snap
 apps:
   qterminal-snap:
@@ -41,7 +37,10 @@ parts:
     source-branch: master
     plugin: cmake
     configflags:
-      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr
+    organize:
+      snap/$SNAPCRAFT_PROJECT_NAME/current/usr: usr
+
     override-pull: |
       snapcraftctl pull
       ver=`git describe --tags --always`
@@ -54,7 +53,7 @@ parts:
       - desktop-qt5
       - qtermwidget-snap
     build-snaps:
-      - lxqt-build-tools-snap
+      - lxqt-build-tools-snap/latest/edge
     build-packages:
       - g++
       - qttools5-dev
@@ -79,7 +78,6 @@ parts:
       - libstdc++6
       - libx11-6
       - qt5-style-plugins
-      - papirus-icon-theme
 
   desktop-qt5:
       source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -109,10 +107,12 @@ parts:
     source-type: git
     plugin: cmake
     configflags:
-      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr
+    organize:
+      snap/$SNAPCRAFT_PROJECT_NAME/current/usr: usr
 
     build-snaps:
-      - lxqt-build-tools-snap
+      - lxqt-build-tools-snap/latest/edge
     build-packages:
       - g++
       - libutf8proc-dev
