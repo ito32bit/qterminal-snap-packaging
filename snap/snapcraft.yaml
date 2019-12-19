@@ -79,7 +79,6 @@ parts:
       - libstdc++6
       - libx11-6
       - qt5-style-plugins
-      - papirus-icon-theme
 
   desktop-qt5:
       source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
