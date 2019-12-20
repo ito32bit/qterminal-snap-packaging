@@ -1,0 +1,9 @@
+#!/bin/bash
+
+u=$HOME/snap/$SNAP_NAME/user-launch
+if [[ -f $u ]]
+then
+. $u
+fi
+
+exec "$@"

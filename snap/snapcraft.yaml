@@ -17,6 +17,7 @@ apps:
     command: usr/local/bin/qterminal
     command-chain:
       - bin/desktop-launch
+      - bin/app-launch
     desktop: usr/local/share/applications/qterminal.desktop
     environment:
       XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
@@ -26,6 +27,7 @@ apps:
     command: usr/local/bin/qterminal
     command-chain:
       - bin/desktop-launch
+      - bin/app-launch
     desktop: usr/local/share/applications/qterminal_drop.desktop
     environment:
       XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
@@ -78,6 +80,10 @@ parts:
       - libqt5x11extras5
       - libstdc++6
       - libx11-6
+
+  default-settings:
+    plugin: dump
+    source: ./default-settings
 
   desktop-qt5:
       source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
