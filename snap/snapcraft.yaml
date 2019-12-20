@@ -18,6 +18,8 @@ apps:
     command-chain:
       - bin/desktop-launch
     desktop: usr/local/share/applications/qterminal.desktop
+    environment:
+      XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
 
   drop:
     adapter: full
@@ -25,6 +27,8 @@ apps:
     command-chain:
       - bin/desktop-launch
     desktop: usr/local/share/applications/qterminal_drop.desktop
+    environment:
+      XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
 
 parts:
   qterminal-snap:
