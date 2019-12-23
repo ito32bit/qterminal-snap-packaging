@@ -16,21 +16,19 @@ apps:
     adapter: full
     command: usr/local/bin/qterminal
     command-chain:
+      - bin/app1-launch
       - bin/desktop-launch
-      - bin/app-launch
+      - bin/app2-launch
     desktop: usr/local/share/applications/qterminal.desktop
-    environment:
-      XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
 
   drop:
     adapter: full
     command: usr/local/bin/qterminal
     command-chain:
+      - bin/app1-launch
       - bin/desktop-launch
-      - bin/app-launch
+      - bin/app2-launch
     desktop: usr/local/share/applications/qterminal_drop.desktop
-    environment:
-      XDG_DATA_DIRS: /snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local/share:$XDG_DATA_DIRS
 
 parts:
   qterminal-snap:
