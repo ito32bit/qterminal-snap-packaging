@@ -1,0 +1,63 @@
+#!/bin/bash
+
+########################################
+u=$HOME/snap/$SNAP_NAME/u1-shell-launch
+if [[ -f $u ]]; then
+. $u
+fi
+#######################################
+
+sn=/snap/$SNAP_NAME
+ps=$SNAP
+ph1=$SNAP_USER_DATA
+ph2=$SNAP_USER_COMMON
+ph0=$HOME
+pv="/var/lib/snapd/lib"
+xr="/snap.$SNAP_NAME"
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR%$xr}
+
+e=`printenv`
+count=0
+
+shopt -s extglob
+for a in $e
+do
+  if [[ "SNAP" == "${a:0:4}" ]]; then
+    continue
+  fi
+  if [[ "$a" == ${a//$sn/dummy} ]]; then
+    continue
+  fi
+  n=$a
+  n=${n//:$pv*([^:])/}
+  if [[ ${n/:/} == $n ]]; then
+    if [[ "XDG_" == "${a:0:4}" ]]; then
+      n=${n/$ph1/$ph0}
+      n=${n/$ph2/$ph0}
+      export "$n"
+    else
+      export -n "$n"
+    fi
+  else
+    n=${n//$ph1*([^:])/}
+    n=${n//$ph2*([^:])/}
+    n=${n//$ps*([^:])/}
+    n=${n/:+(:)/:}
+    n=${n/=:/=}
+    export "$n"
+  fi
+  let count+=1
+done
+export  shell_replace_count=$count
+shopt -u extglob
+
+export SHELL=$SHELL_SNAP_LAUNCH
+
+#######################################
+u=$HOME/snap/$SNAP_NAME/u2-shell-launch
+if [[ -f $u ]]; then
+. $u
+fi
+#######################################
+
+exec $SHELL "$@"
