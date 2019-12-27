@@ -44,12 +44,16 @@ parts:
 
     override-pull: |
       snapcraftctl pull
-      ver=`git describe --tags --always`
+      c1=`git log --oneline -n 1`
       cd $SNAPCRAFT_PROJECT_DIR
-      ver=$ver-`git log --oneline -n 1|awk '{print $1}'` || ver=$ver`date +%y%m%d`
+      c2=`git log --oneline -n 1`
+      d=`date +%y%m%d`
+      { t1=${c1#???}; c1=${c1%$t1}; }
+      { t2=${c2#???}; c2=${c2%$t2}; }
+      ver="$d.$SNAP_ARCH-$c1.$c2"
       echo "Set version: $ver"
       snapcraftctl set-version $ver
-#
+
     after:
       - desktop-qt5
       - qtermwidget-snap
