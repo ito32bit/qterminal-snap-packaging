@@ -13,7 +13,7 @@ confinement: classic
 adopt-info: qterminal-snap
 apps:
   qterminal-snap:
-    adapter: full
+    adapter: none
     command: usr/local/bin/qterminal
     command-chain:
       - bin/app1-launch
@@ -22,7 +22,7 @@ apps:
     desktop: usr/local/share/applications/qterminal.desktop
 
   drop:
-    adapter: full
+    adapter: none
     command: usr/local/bin/qterminal
     command-chain:
       - bin/app1-launch
