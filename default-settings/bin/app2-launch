@@ -7,4 +7,6 @@ if [[ -f $u ]]; then
 fi
 #######################################
 
+printenv | sort > $SNAP_USER_COMMON/printenv2.sh
+
 exec "$@"

@@ -7,6 +7,8 @@ if [[ -f $u ]]; then
 fi
 #######################################
 
+printenv | sort > $SNAP_USER_COMMON/printenv1.sh
+
 s=$SNAP
 export XDG_DATA_DIRS=$s/usr/local/share:$XDG_DATA_DIRS
 export PATH=$s/usr/local/bin:$PATH
