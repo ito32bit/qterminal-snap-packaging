@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#######################################
-u=$HOME/snap/$SNAP_NAME/u1-shell-launch
+########################################
+u=$HOME/snap/$SNAP_NAME/shell-launch-u1
 if [[ -f $u ]]; then
 . $u
 fi
@@ -56,7 +56,7 @@ done
 IFS=""
 
 #######################################
-u=$HOME/snap/$SNAP_NAME/u2-shell-launch
+u=$HOME/snap/$SNAP_NAME/shell-launch-u2
 if [[ -f $u ]]; then
 . $u
 fi
