@@ -1,16 +1,17 @@
 #!/bin/bash
 
-s=$SNAP
-export XDG_DATA_DIRS=$s/usr/local/share:$XDG_DATA_DIRS
-export PATH=$s/usr/local/bin:$PATH
-export SHELL_SNAP_LAUNCH=$SHELL
-export SHELL=$s/bin/shell-launch
-
-####################################
+#######################################
 u=$HOME/snap/$SNAP_NAME/user1-launch
 if [[ -f $u ]]; then
 . $u
 fi
 #######################################
+
+s=$SNAP
+export XDG_DATA_DIRS=$s/usr/local/share:$XDG_DATA_DIRS
+export PATH=$s/usr/local/bin:$PATH
+
+export SHELL_SNAP_LAUNCH=$SHELL
+export SHELL=$s/bin/shell-launch
 
 exec "$@"
