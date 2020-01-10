@@ -23,7 +23,7 @@ apps:
 
   drop:
     adapter: none
-    command: usr/local/bin/qterminal
+    command: usr/local/bin/qterminal --drop
     command-chain:
       - bin/app1-launch
       - bin/desktop-launch
