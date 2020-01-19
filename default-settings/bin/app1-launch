@@ -7,6 +7,9 @@ if [[ -f $u ]]; then
 fi
 #######################################
 
+export TERMINAL_SNAP=$SNAP
+export TERMINAL_SNAP_VERSION=$SNAP_VERSION
+
 printenv | sort > $SNAP_USER_COMMON/printenv1.sh
 
 s=$SNAP
