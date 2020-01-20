@@ -9,8 +9,7 @@ fi
 
 export TERMINAL_SNAP=$SNAP
 export TERMINAL_SNAP_VERSION=$SNAP_VERSION
-
-printenv | sort > $SNAP_USER_COMMON/printenv1.sh
+export TERMINAL_ENV1=`printenv`
 
 s=$SNAP
 export XDG_DATA_DIRS=$s/usr/local/share:$XDG_DATA_DIRS
