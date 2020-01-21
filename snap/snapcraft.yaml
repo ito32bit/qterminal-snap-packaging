@@ -128,4 +128,5 @@ parts:
       - qttools5-dev
 
     stage-packages:
+      - libutf8proc2
       - fonts-hack-ttf
