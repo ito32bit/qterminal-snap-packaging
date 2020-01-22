@@ -9,8 +9,11 @@ fi
 
 xrun="/snap.$SNAP_NAME"
 
-e1=`cat $SNAP_USER_COMMON/printenv1.sh`
-e2=`cat $SNAP_USER_COMMON/printenv2.sh`
+e1="$TERMINAL_ENV1"
+e2="$TERMINAL_ENV2"
+export -n TERMINAL_ENV1
+export -n TERMINAL_ENV2
+
 declare -A r1
 declare -A r2
 
