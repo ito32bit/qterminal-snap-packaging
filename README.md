@@ -12,18 +12,11 @@ Build status:
 
 ## Install on your Linux distribution
 
-[![qterminal-snap](https://snapcraft.io//qterminal-snap/badge.svg)](https://snapcraft.io/qterminal-snap)
-[![qterminal-snap](https://snapcraft.io//qterminal-snap/trending.svg?name=0)](https://snapcraft.io/qterminal-snap)
-
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/qterminal-snap)
 
 Terminal:  
 
-    sudo snap install qterminal-snap 
-
-or
-
-    sudo snap install qterminal-snap --edge 
+    sudo snap install qterminal-snap --classic --edge 
 
 ## Launch
 
