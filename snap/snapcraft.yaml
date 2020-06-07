@@ -34,7 +34,7 @@ parts:
   qterminal-snap:
     source: https://github.com/lxqt/qterminal.git
     source-type: git
-    source-branch: master
+    source-commit: 7966f3f217465210fe13a8f205b0137b72d50ed4
     plugin: cmake
     configflags:
       - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local
@@ -115,6 +115,7 @@ parts:
   qtermwidget-snap:
     source: https://github.com/lxqt/qtermwidget.git
     source-type: git
+    source-commit: d0905777507d01c7aec8bad4d0f92271463547bb
     plugin: cmake
     configflags:
       - -DCMAKE_INSTALL_PREFIX=/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/local
